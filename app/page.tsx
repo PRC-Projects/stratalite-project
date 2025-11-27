@@ -33,7 +33,7 @@ function cn(...inputs: ClassValue[]) {
 // --- Animation Variants ---
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
 const staggerContainer = {
@@ -202,7 +202,7 @@ const Hero = () => (
         transition={{ 
           duration: 10, 
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: [0.42, 0, 0.58, 1]
         }}
         className="absolute top-10 right-10 w-[400px] h-[400px] bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"
       ></motion.div>
@@ -219,7 +219,7 @@ const Hero = () => (
             transition={{ 
                repeat: Infinity, 
                duration: 4, 
-               ease: "easeInOut" 
+               ease: [0.42, 0, 0.58, 1] 
             }}
          >
             <img 
@@ -286,7 +286,7 @@ const FindBest = () => (
           {/* Floating Stats Card 1 */}
           <motion.div 
             animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0.5 }}
+            transition={{ repeat: Infinity, duration: 3, ease: [0.42, 0, 0.58, 1], delay: 0.5 }}
             className="absolute top-8 right-[80px] bg-white p-4 rounded-xl shadow-lg flex items-center gap-3 z-10"
           >
              <div className="bg-blue-100 p-2 rounded-full text-blue-600 font-bold text-l">500+</div>
@@ -298,7 +298,7 @@ const FindBest = () => (
           {/* Floating Stats Card 2 */}
           <motion.div 
              animate={{ y: [0, -12, 0] }}
-             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+             transition={{ repeat: Infinity, duration: 4, ease: [0.42, 0, 0.58, 1] }}
              className="absolute bottom-[150px] -right-12 bg-white p-4 rounded-xl shadow-lg flex items-center gap-3 z-10"
           >
              <div className="bg-orange-100 p-2 rounded-full text-orange-600 font-bold text-l">300+</div>
