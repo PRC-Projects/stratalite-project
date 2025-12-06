@@ -4,18 +4,30 @@ import { Search, Bell, MessageSquare, ChevronRight } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import DashboardLayout from "./dashboard-layout"
 
 interface HeaderProps {
   userName?: string
   userRole?: string
   userImage?: string
+  collapsed: boolean // 1. Add this new prop
 }
 
-export function Header({ userName = "Bhim", userRole = "Vendor", userImage }: HeaderProps) {
+export function Header({ 
+  userName = "Bhim", 
+  userRole = "Vendor", 
+  userImage, 
+  collapsed // Destructure the new prop
+}: HeaderProps) {
   return (
-    <header className="fixed right-0 top-0 z-30 h-16 border-b bg-white" style={{ left: '256px' }}>
+    <header 
+      // 2. Remove the inline style and use dynamic logic for the 'left' position
+      // 3. Added 'transition-all duration-300' for smooth animation
+      className={`fixed right-0 top-0 z-30 h-16 border-b bg-white transition-all duration-300 ease-in-out ${
+        collapsed ? "left-[80px]" : "left-[256px]"
+      }`}
+    >
       <div className="flex h-full items-center justify-between px-6">
         {/* Search */}
         <div className="flex-1 max-w-xl">

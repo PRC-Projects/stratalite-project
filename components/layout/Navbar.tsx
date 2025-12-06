@@ -115,7 +115,7 @@ export default function Navbar() {
           
           {/* ==================== DESKTOP MENU (>768px) ==================== */}
           <div className="hidden md:flex gap-6 lg:gap-8 text-sm font-medium text-gray-600 h-full items-center">
-            <a href="#" className="hover:text-blue-600 transition-colors">Home</a>
+            <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
             
             {/* --- Desktop Dropdown 1: Find Work --- */}
             <div 

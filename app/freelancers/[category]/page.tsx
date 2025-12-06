@@ -165,9 +165,9 @@ export default function FreelancerCategoryPage() {
   const visibleFreelancers = filteredFreelancers.slice(0, visibleCount);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-[#f2f9ff] font-sans">
       <Navbar />
-      <div className="h-24 bg-gray-50"></div>
+      <div className="h-24 bg-[#f2f9ff]"></div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12">
         

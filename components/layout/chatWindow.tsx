@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { FileText, Paperclip, Phone, Smile, Video } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 interface ChatMessage {
   id: string;
@@ -96,7 +97,7 @@ export default function ChatWindow({ className }: ChatWindowProps) {
   <div className="flex flex-col leading-tight">
   <h2 className="font-semibold text-gray-800">Travis Barker</h2>
   <div className="flex flex-col text-xs text-gray-500">
-    <span className="text-blue-500">I need a Website...</span>
+    <Link href="/projects" className="text-blue-500">I need a Website...</Link>
     <div className="flex gap-2 mt-1">
       <span>$4500</span>
       <span>22-01-22 to 22-5-22</span>

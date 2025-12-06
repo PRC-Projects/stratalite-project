@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 export default function WorkStreamRightBar() {
   const [open, setOpen] = useState({
@@ -10,26 +11,30 @@ export default function WorkStreamRightBar() {
     act: false,
     note: false,
   });
+  
 
-  const toggle = (key: keyof typeof open) => {
-    setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
-  const boxStyle =
-    "bg-white border border-gray-200 rounded-lg p-4 shadow-sm";
+  const boxStyle = "bg-white border border-gray-200 rounded-lg p-4 shadow-sm";
 
   return (
     <aside className="w-full px-4 py-4 space-y-4">
-      
       {/* Relationship Manager */}
       <div className={boxStyle}>
         <div className="flex items-center justify-between">
           <h4 className="font-semibold text-gray-700">Relationship Manager</h4>
           <button
-            className="text-sm !text-green-600"
-            onClick={() => toggle("rm")}
+            onClick={() =>
+              setOpen({
+                ...open,
+                rm: !open.rm, 
+              })
+            }
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
           >
-            Toggle
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-300 ${
+                open.rm ? "rotate-180" : "rotate-0"
+              }`}
+            />
           </button>
         </div>
 
@@ -67,10 +72,19 @@ export default function WorkStreamRightBar() {
         <div className="flex items-center justify-between">
           <h4 className="font-semibold text-gray-700">Project Milestones</h4>
           <button
-            className="text-sm !text-green-600 "
-            onClick={() => toggle("ms")}
+            onClick={() =>
+              setOpen({
+                ...open,
+                ms: !open.ms, // Change key according to section: rm, ms, docs, etc.
+              })
+            }
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
           >
-            Toggle
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-300 ${
+                open.ms ? "rotate-180" : "rotate-0"
+              }`}
+            />
           </button>
         </div>
 
@@ -129,10 +143,19 @@ export default function WorkStreamRightBar() {
         <div className="flex items-center justify-between">
           <h4 className="font-semibold text-gray-700">Project Documents</h4>
           <button
-            className="text-sm !text-green-600"
-            onClick={() => toggle("doc")}
+            onClick={() =>
+              setOpen({
+                ...open,
+                doc: !open.doc, // Change key according to section: rm, ms, docs, etc.
+              })
+            }
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
           >
-            Toggle
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-300 ${
+                open.doc ? "rotate-180" : "rotate-0"
+              }`}
+            />
           </button>
         </div>
 
@@ -174,10 +197,19 @@ export default function WorkStreamRightBar() {
         <div className="flex items-center justify-between">
           <h4 className="font-semibold text-gray-700">Activity Timeline</h4>
           <button
-            className="text-sm !text-green-600"
-            onClick={() => toggle("act")}
+            onClick={() =>
+              setOpen({
+                ...open,
+                act: !open.act, // Change key according to section: rm, ms, docs, etc.
+              })
+            }
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
           >
-            Toggle
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-300 ${
+                open.act ? "rotate-180" : "rotate-0"
+              }`}
+            />
           </button>
         </div>
 
@@ -206,10 +238,19 @@ export default function WorkStreamRightBar() {
         <div className="flex items-center justify-between">
           <h4 className="font-semibold text-gray-700">Internal Notes</h4>
           <button
-            className="text-sm !text-green-600"
-            onClick={() => toggle("note")}
+            onClick={() =>
+              setOpen({
+                ...open,
+                note: !open.note, // Change key according to section: rm, ms, docs, etc.
+              })
+            }
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
           >
-            Toggle
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-300 ${
+                open.note ? "rotate-180" : "rotate-0"
+              }`}
+            />
           </button>
         </div>
 
@@ -231,7 +272,6 @@ export default function WorkStreamRightBar() {
           </div>
         )}
       </div>
-
     </aside>
   );
 }

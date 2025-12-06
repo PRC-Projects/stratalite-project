@@ -2,7 +2,9 @@
 
 import ChatWindow from "@/components/layout/chatWindow";
 import MessagesList from "@/components/layout/messagesList";
-import WorkStreamRightBar from "@/components/layout/workStreamRightBar";
+import WorkStreamRightBar from "@/components/layout/workstreamRightBar";
+
+
 
 export default function WorkstreamsPage() {
   return (

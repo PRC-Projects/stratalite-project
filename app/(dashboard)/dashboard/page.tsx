@@ -3,15 +3,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 import {
   FileText,
-  DollarSign,
   CheckCircle,
   Calendar,
   MoreVertical,
   Filter,
+  Radio,
+  Hourglass,
+  FileCheck,
 } from "lucide-react";
 import RightSidebar from "@/components/layout/rightsidebar";
+
 
 const cards = [
   {
@@ -22,9 +26,9 @@ const cards = [
     deadline: "25 May",
     progress: 75,
     avatars: [
-      "/images/rightsidebar/man.png",
-      "/images/rightsidebar/woman.png",
-      "/images/rightsidebar/man.png",
+      "/images/rightsidebar/man.jpg",
+      "/images/rightsidebar/woman.jpg",
+      "/images/rightsidebar/man.jpg",
     ],
   },
 
@@ -36,9 +40,9 @@ const cards = [
     deadline: "10 June",
     progress: 60,
     avatars: [
-      "/images/rightsidebar/woman.png",
-      "/images/rightsidebar/man.png",
-      "/images/rightsidebar/woman.png",
+      "/images/rightsidebar/woman.jpg",
+      "/images/rightsidebar/man.jpg",
+      "/images/rightsidebar/woman.jpg",
     ],
   },
 
@@ -50,9 +54,9 @@ const cards = [
     deadline: "30 April",
     progress: 40,
     avatars: [
-      "/images/rightsidebar/man.png",
-      "/images/rightsidebar/man.png",
-      "/images/rightsidebar/woman.png",
+      "/images/rightsidebar/man.jpg",
+      "/images/rightsidebar/man.jpg",
+      "/images/rightsidebar/woman.jpg",
     ],
   },
 ];
@@ -64,7 +68,7 @@ const invoices = [
     status: "Approved",
     user: {
       name: "Erin Gonzales",
-      avatar: "/images/rightsidebar/man.png",
+      avatar: "/images/rightsidebar/man.jpg",
     },
     invoiceNumber: "#5331",
     date: "20 May",
@@ -76,7 +80,7 @@ const invoices = [
     status: "Pending",
     user: {
       name: "Michael Brown",
-      avatar: "/images/rightsidebar/woman.png",
+      avatar: "/images/rightsidebar/woman.jpg",
     },
     invoiceNumber: "#6242",
     date: "12 June",
@@ -88,18 +92,32 @@ const invoices = [
     status: "Pending",
     user: {
       name: "Sarah Watson",
-      avatar: "/images/rightsidebar/man2.png",
+      avatar: "/images/rightsidebar/man.jpg",
     },
     invoiceNumber: "#7120",
     date: "08 May",
   },
 ];
 
+// SVG Wave Component for background styling
+const WaveBackground = ({ color = "fill-white/10" }: { color?: string }) => (
+  <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden rounded-2xl">
+    <svg
+      className={`absolute bottom-0 left-0 w-[120%] h-full ${color}`}
+      viewBox="0 0 1440 320"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+);
+
 export default function DashboardPage() {
   return (
-    <div className="flex">
+    <div className="flex bg-gray-50 min-h-screen">
       {/* MAIN CONTENT */}
-      <div className="flex-1 px-8 py-6 pt-16 pr-[22rem] space-y-10">
+      <div className="flex-1 px-8  pr-[22rem] space-y-10">
         {/* Welcome Section */}
         <div>
           <h1 className="text-3xl font-semibold text-gray-900">
@@ -110,62 +128,69 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Live Projects */}
-          <Card className="relative bg-[#6590FF] text-white rounded-2xl shadow-lg border-none overflow-hidden">
-            <CardHeader className="pb-0">
+        {/* Stats Cards - Updated Grid & Styling */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          
+          <Card className="relative md:col-span-1 bg-[#6590FF] text-white rounded-2xl shadow-lg border-none overflow-hidden h-48">
+            <WaveBackground color="fill-white/10" />
+            <CardHeader className="relative z-10 pb-0 pt-6 px-6">
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 text-xs bg-[#6481CE] rounded-md backdrop-blur-sm">
-                  Live projects
+                <span className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white/20 rounded-md backdrop-blur-sm">
+                  <Radio className="w-4 h-4" /> Live projects
                 </span>
 
-                <Button
-                  variant="outline"
-                  className="text-black bg-[#6481CE] text-xs px-3 py-1 h-auto rounded-md border-none"
+                <Link href="/projects"> <Button
+                  variant="secondary"
+                  className="bg-white/20 hover:bg-white/30 text-white text-xs px-4 py-2 h-auto rounded-md border-none backdrop-blur-md"
                 >
                   View All
-                </Button>
+                </Button> </Link>
               </div>
             </CardHeader>
 
-            <CardContent className="pt-4">
-              <h2 className="text-4xl font-bold leading-none">5</h2>
-              <p className="text-xs mt-2 opacity-80">
+            <CardContent className="relative z-10 pt-6 px-6">
+              <h2 className="text-5xl font-bold leading-none">56</h2>
+              <p className="text-sm mt-3 opacity-90 font-medium">
                 Currently, the projects is in progress.
               </p>
             </CardContent>
           </Card>
 
-          {/* Earnings Card */}
-          <Card className="relative bg-[#65CAFF] text-white rounded-2xl shadow-lg border-none ">
-            <CardHeader className="pb-0">
+          {/* In Progress - Regular Card */}
+          <Card className="relative md:col-span-1 bg-[#65CAFF] text-white rounded-2xl shadow-lg border-none overflow-hidden h-48">
+            <WaveBackground color="fill-white/10" />
+            <CardHeader className="relative z-10 pb-0 pt-6 px-6">
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 text-xs bg-[#64a9CE] rounded-md backdrop-blur-sm">
-                  In Progress
+                <span className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white/20 rounded-md backdrop-blur-sm">
+                  <Hourglass className="w-4 h-4" /> In Progress
                 </span>
               </div>
             </CardHeader>
 
-            <CardContent className="pt-4">
-              <h2 className="text-4xl font-bold leading-none">$12400</h2>
-              <p className="text-xs mt-2 opacity-80">Earnings (Month)</p>
+            <CardContent className="relative z-10 pt-8 px-6">
+              <h2 className="text-5xl font-bold leading-none">124</h2>
+              <p className="text-sm mt-3 opacity-90 font-medium">
+                Projects in progress
+              </p>
             </CardContent>
           </Card>
 
-          {/* Completed Projects */}
-          <Card className="relative bg-[#AD65FF] text-white rounded-2xl shadow-lg border-none overflow-hidden">
-            <CardHeader className="pb-0">
+          {/* Completed Projects - Regular Card */}
+          <Card className="relative md:col-span-1 bg-[#AD65FF] text-white rounded-2xl shadow-lg border-none overflow-hidden h-48">
+            <WaveBackground color="fill-white/10" />
+            <CardHeader className="relative z-10 pb-0 pt-6 px-6">
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 text-xs bg-[#9664CE] rounded-md backdrop-blur-sm">
-                  Completed
+                <span className="flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white/20 rounded-md backdrop-blur-sm">
+                  <FileCheck className="w-4 h-4" /> Completed
                 </span>
               </div>
             </CardHeader>
 
-            <CardContent className="pt-4">
-              <h2 className="text-4xl font-bold leading-none">24</h2>
-              <p className="text-xs mt-2 opacity-80">Completed projects</p>
+            <CardContent className="relative z-10 pt-8 px-6">
+              <h2 className="text-5xl font-bold leading-none">24</h2>
+              <p className="text-sm mt-3 opacity-90 font-medium">
+                Completed projects
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -195,7 +220,7 @@ export default function DashboardPage() {
             {cards.map((card) => (
               <Card
                 key={card.id}
-                className="shadow-sm hover:shadow-md transition"
+                className="shadow-sm hover:shadow-md transition bg-white"
               >
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg font-semibold">
@@ -220,7 +245,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-primary rounded-full"
+                        className="h-full bg-[#6590FF] rounded-full"
                         style={{ width: `${card.progress}%` }}
                       />
                     </div>
@@ -234,12 +259,12 @@ export default function DashboardPage() {
                           className="h-7 w-7 border-2 border-white"
                         >
                           <AvatarImage src={src} alt="Team member" />
-                          <AvatarFallback>A</AvatarFallback>
+                          <AvatarFallback>U</AvatarFallback>
                         </Avatar>
                       ))}
                     </div>
 
-                    <Button size="sm">View</Button>
+                    <Button size="sm" className="bg-[#14A9F9] hover:bg-blue-700">View</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -260,7 +285,7 @@ export default function DashboardPage() {
             {invoices.map((item) => (
               <Card
                 key={item.id}
-                className="shadow-sm hover:shadow-md transition border"
+                className="shadow-sm hover:shadow-md transition border bg-white"
               >
                 <CardContent className="p-6">
                   {/* Amount */}
@@ -271,13 +296,13 @@ export default function DashboardPage() {
 
                   {/* Status Badge */}
                   <Badge
-                    variant={
+                    className={`${
                       item.status === "Approved"
-                        ? "success"
+                        ? "bg-green-100 text-green-700 hover:bg-green-100"
                         : item.status === "Pending"
-                        ? "secondary"
-                        : "outline"
-                    }
+                        ? "bg-yellow-100 text-yellow-700 hover:bg-yellow-100"
+                        : "bg-gray-100 text-gray-700"
+                    } border-none px-3 py-1`}
                   >
                     {item.status}
                   </Badge>
